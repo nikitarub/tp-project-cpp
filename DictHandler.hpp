@@ -1,4 +1,4 @@
-#ifndef DictHandler_hpp_hpp
+#ifndef DictHandler_hpp_
 #define DictHandler_hpp
 
 #include <stdio.h>
@@ -51,7 +51,7 @@ public:
 
 
 
-class DictHandler_hpp 
+class DictHandler
 {
     Model<std::string, dictelem_t> model;
     Model<unsigned long, dictelem_t> model_vec;
