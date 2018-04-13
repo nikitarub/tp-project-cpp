@@ -4,6 +4,7 @@ const WordVector &WordVectorTable::operator[](size_t index) const {
     // TODO
 }
 
-WordVector &WordVectorTable::operator[](size_t index) {
-    // TODO
+WordVector WordVectorTable::operator [](size_t index) {
+    WordVector vector(dictHandler.getVecbyId(index));
+    return vector;
 }

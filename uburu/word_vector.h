@@ -11,6 +11,7 @@ class WordVector {
     public:
         WordVector() = default;
         explicit WordVector(const std::string& word);
+        explicit WordVector(const word_vector_t& vector);
         WordVector(const WordVector& wordVector) = default;
         WordVector(WordVector&& wordVector) noexcept = default;
 

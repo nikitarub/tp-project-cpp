@@ -25,3 +25,7 @@ WordVector &WordVector::operator+=(const WordVector &wordVector) {
 
     return *this;
 }
+
+WordVector::WordVector(const word_vector_t &vector) :
+        vector(vector) {
+}
