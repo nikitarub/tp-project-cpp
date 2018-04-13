@@ -23,14 +23,12 @@ TextComparator &TextComparator::operator=(TextComparator &&textComparator) noexc
     return *this;
 }
 
-similarity_coeff_t
-TextComparator::Compare(const std::string &firstFile,
-                        const std::string &secondFile,
-                        size_t firstWindowSize,
-                        size_t secondWindowSize) {
-    FileReader firstReader(firstFile);
+std::vector<WordVector> get_sentnces(const std::string& fileName) {
+    FileReader firstReader(fileName);
 
     std::string str;
+    std::vector<WordVector> sentences;
+
     while (!(str = firstReader.ReadLine()).empty()) {
         auto indexes = IndexFileParser().ParseString(str);
         if (indexes.empty()) {
@@ -42,7 +40,19 @@ TextComparator::Compare(const std::string &firstFile,
             sVec += WordVectorTable()[indexes[i]];
         }
 
+        sentences.push_back(sVec);
     }
+
+    return sentences;
+}
+
+similarity_coeff_t
+TextComparator::Compare(const std::string &firstFile,
+                        const std::string &secondFile,
+                        size_t firstWindowSize,
+                        size_t secondWindowSize) {
+    auto firstTextSentences = get_sentnces(firstFile);
+    auto secondTextSentences = get_sentnces(secondFile);
 }
 
 void TextComparator::CopyFrom(const TextComparator &textComparator) {
