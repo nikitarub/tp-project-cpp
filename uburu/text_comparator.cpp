@@ -1,6 +1,7 @@
 #include "text_comparator.h"
 
 #include <vector>
+#include <cassert>
 #include "file_reader.h"
 #include "word_vector_table.h"
 #include "index_file_parser.h"
@@ -46,6 +47,21 @@ std::vector<WordVector> get_sentnces(const std::string& fileName) {
     return sentences;
 }
 
+bool get_window(WordVector& window,
+        const std::vector<WordVector>& sentences,
+        size_t startIndex, size_t windowSize) {
+    assert(!sentences.empty());
+
+    auto winVec = WordVector(sentences[0]);
+    for (size_t i = startIndex; i < std::min(startIndex +
+            windowSize, sentences.size()); ++i) {
+        winVec += sentences[i];
+        return true;
+    }
+
+    return false;
+}
+
 similarity_coeff_t
 TextComparator::Compare(const std::string &firstFile,
                         const std::string &secondFile,
@@ -53,6 +69,23 @@ TextComparator::Compare(const std::string &firstFile,
                         size_t secondWindowSize) {
     auto firstTextSentences = get_sentnces(firstFile);
     auto secondTextSentences = get_sentnces(secondFile);
+
+    std::vector<WordVector> firstTextWindows, secondTextWindows;
+
+    WordVector sVec;
+    size_t startIndex = 0;
+    while (get_window(sVec, firstTextSentences, startIndex, firstWindowSize)) {
+        firstTextWindows.push_back(sVec);
+        startIndex += firstWindowSize;
+    }
+
+    startIndex = 0;
+    while (get_window(sVec, secondTextSentences, startIndex, secondWindowSize)) {
+        secondTextWindows.push_back(sVec);
+        startIndex += secondWindowSize;
+    }
+
+    return 0.58;
 }
 
 void TextComparator::CopyFrom(const TextComparator &textComparator) {

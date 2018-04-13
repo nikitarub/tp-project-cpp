@@ -9,7 +9,7 @@ typedef std::vector<word_vector_coord_t > word_vector_t;
 
 class WordVector {
     public:
-        WordVector() = delete;
+        WordVector() = default;
         explicit WordVector(const std::string& word);
         WordVector(const WordVector& wordVector) = default;
         WordVector(WordVector&& wordVector) noexcept = default;
