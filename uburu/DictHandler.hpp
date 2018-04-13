@@ -1,4 +1,4 @@
-#ifndef DictHandler_hpp_
+#ifndef DictHandler_hpp
 #define DictHandler_hpp
 
 #include <stdio.h>
