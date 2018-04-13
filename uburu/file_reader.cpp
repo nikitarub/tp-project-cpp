@@ -1,6 +1,5 @@
 #include "file_reader.h"
 
-
 FileReader::FileReader(const std::string &fileName) :
         fileStream(fileName) {
 }

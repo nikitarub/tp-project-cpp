@@ -5,17 +5,26 @@
 #include <vector>
 
 typedef double word_vector_coord_t;
+typedef std::vector<word_vector_coord_t > word_vector_t;
 
 class WordVector {
     public:
         WordVector() = delete;
         explicit WordVector(const std::string& word);
+        WordVector(const WordVector& wordVector) = default;
+        WordVector(WordVector&& wordVector) noexcept = default;
 
-        virtual ~WordVector() noexcept;
+        virtual ~WordVector() noexcept = default;
+
+        WordVector& operator =(const WordVector& wordVector) = default;
+        WordVector& operator =(WordVector&& wordVector) noexcept = default;
+
+        WordVector operator +(const WordVector& wordVector);
+        WordVector& operator +=(const WordVector& wordVector);
 
     private:
         std::string word;
-        std::vector<word_vector_coord_t> vector;
+        word_vector_t vector;
 };
 
 #endif //UBURU_WORD_VECTOR_H

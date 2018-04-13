@@ -5,9 +5,9 @@
 
 class WordVectorTable {
     public:
-        WordVectorTable();
+        WordVectorTable() = default;
 
-        virtual ~WordVectorTable() noexcept;
+        virtual ~WordVectorTable() noexcept = default;
 
         const WordVector& operator [](size_t index) const;
         WordVector& operator [](size_t index);
