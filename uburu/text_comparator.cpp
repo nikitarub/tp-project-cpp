@@ -85,7 +85,14 @@ TextComparator::Compare(const std::string &firstFile,
         startIndex += secondWindowSize;
     }
 
-    return 0.58;
+    similarity_coeff_t result = 1;
+    for (auto w1 : firstTextWindows) {
+        for (auto w2 : secondTextWindows) {
+            result = std::min(result, w1.CosBetween(w2));
+        }
+    }
+
+    return result;
 }
 
 void TextComparator::CopyFrom(const TextComparator &textComparator) {

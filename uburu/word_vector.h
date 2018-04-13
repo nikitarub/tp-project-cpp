@@ -23,6 +23,8 @@ class WordVector {
         WordVector operator +(const WordVector& wordVector);
         WordVector& operator +=(const WordVector& wordVector);
 
+        double CosBetween(WordVector& wordVector);
+
     private:
         std::string word;
         word_vector_t vector;

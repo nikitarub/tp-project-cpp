@@ -29,3 +29,7 @@ WordVector &WordVector::operator+=(const WordVector &wordVector) {
 WordVector::WordVector(const word_vector_t &vector) :
         vector(vector) {
 }
+
+double WordVector::CosBetween(WordVector &wordVector) {
+    return 0.5;
+}
