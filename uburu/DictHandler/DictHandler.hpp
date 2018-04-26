@@ -1,4 +1,4 @@
-#ifndef DictHandler_hpp_
+#ifndef DictHandler_hpp
 #define DictHandler_hpp
 
 #include <stdio.h>
@@ -67,4 +67,5 @@ public:
 };
 
 
-#endif /* DictHandler_hpp_hpp */
+#endif /* DictHandler_hpp */
+
