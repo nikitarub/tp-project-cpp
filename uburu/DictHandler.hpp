@@ -67,4 +67,4 @@ public:
 };
 
 
-#endif /* DictHandler_hpp_hpp */
+#endif /* DictHandler_hpp */
